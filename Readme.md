@@ -134,3 +134,13 @@ Failure: EXECUTE_TRANSACTION_SLAVE_READ_ADDR WAIT AR Time Out!
 
 ```
 
+## Difference between OK Case and NG Case
+
+```
+shell$ diff project_post_synth_sim_ok/create_project.tcl project_post_synth_sim_ng/create_project.tcl 
+20c20
+< set_property "target_language"    "VHDL"           [get_projects $project_name]
+---
+> set_property "target_language"    "Verilog"        [get_projects $project_name]
+```
+
