@@ -1,0 +1,25 @@
+// DMA_Read.h
+// 2016/07/14 by marsee
+// 2016/09/18 : BURST_LENGTH を追加
+//
+
+#ifndef __DMA_READ_H__
+#define __DMA_READ_H__
+
+#define HORIZONTAL_PIXEL_WIDTH    800
+#define VERTICAL_PIXEL_WIDTH    600
+
+//#define HORIZONTAL_PIXEL_WIDTH    64
+//#define VERTICAL_PIXEL_WIDTH    48
+
+#define ALL_PIXEL_VALUE    (HORIZONTAL_PIXEL_WIDTH*VERTICAL_PIXEL_WIDTH)
+
+#define MAX_FRAME_NUMBER    3
+
+#define DMA_WRITE_MODE    0
+#define FREE_RUN_MODE    1
+
+#define MEMCPY_LENGTH    (HORIZONTAL_PIXEL_WIDTH*4)
+
+#endif
+

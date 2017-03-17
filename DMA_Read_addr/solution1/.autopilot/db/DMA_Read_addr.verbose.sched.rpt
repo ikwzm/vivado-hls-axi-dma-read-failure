@@ -1,0 +1,467 @@
+
+
+================================================================
+== Vivado HLS Report for 'DMA_Read_addr'
+================================================================
+* Date:           Fri Mar 17 13:19:49 2017
+
+* Version:        2016.4 (Build 1733598 on Wed Dec 14 22:59:20 MST 2016)
+* Project:        DMA_Read_addr
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z020clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|      8.75|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +--------+--------+--------+--------+---------+
+    |     Latency     |     Interval    | Pipeline|
+    |   min  |   max  |   min  |   max  |   Type  |
+    +--------+--------+--------+--------+---------+
+    |  480011|  480011|  480012|  480012|   none  |
+    +--------+--------+--------+--------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+--------+--------+----------+-----------+-----------+--------+----------+
+        |          |     Latency     | Iteration|  Initiation Interval  |  Trip  |          |
+        | Loop Name|   min  |   max  |  Latency |  achieved |   target  |  Count | Pipelined|
+        +----------+--------+--------+----------+-----------+-----------+--------+----------+
+        |- Loop 1  |  480001|  480001|         3|          1|          1|  480000|    yes   |
+        +----------+--------+--------+----------+-----------+-----------+--------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 3
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 13
+* Pipeline: 1
+  Pipeline-0: II = 1, D = 3, States = { 10 11 12 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / true
+3 --> 
+	4  / true
+4 --> 
+	5  / true
+5 --> 
+	6  / true
+6 --> 
+	7  / true
+7 --> 
+	8  / true
+8 --> 
+	9  / true
+9 --> 
+	10  / true
+10 --> 
+	13  / (exitcond_flatten)
+	11  / (!exitcond_flatten)
+11 --> 
+	12  / true
+12 --> 
+	10  / true
+13 --> 
+* FSM state operations: 
+
+ <State 1>: 4.96ns
+ST_1: n_load (42)  [1/1] 0.00ns  loc: DMA_Read_addr.cpp:39
+_ifconv:27  %n_load = load i32* @n, align 4
+
+ST_1: tmp (43)  [1/1] 2.44ns  loc: DMA_Read_addr.cpp:39
+_ifconv:28  %tmp = add nsw i32 %n_load, 1
+
+ST_1: tmp_1 (44)  [1/1] 2.52ns  loc: DMA_Read_addr.cpp:40
+_ifconv:29  %tmp_1 = icmp sgt i32 %tmp, 2
+
+ST_1: active_frame_V_read (46)  [2/2] 0.00ns  loc: DMA_Read_addr.cpp:37
+_ifconv:31  %active_frame_V_read = call i2 @_ssdm_op_Read.ap_none.i2P(i2* %active_frame_V)
+
+
+ <State 2>: 7.63ns
+ST_2: mode_V_read (30)  [1/1] 1.00ns
+_ifconv:15  %mode_V_read = call i1 @_ssdm_op_Read.s_axilite.i1(i1 %mode_V)
+
+ST_2: frame_buffer2_read (31)  [1/1] 1.00ns
+_ifconv:16  %frame_buffer2_read = call i32 @_ssdm_op_Read.s_axilite.i32(i32 %frame_buffer2)
+
+ST_2: frame_buffer1_read (32)  [1/1] 1.00ns
+_ifconv:17  %frame_buffer1_read = call i32 @_ssdm_op_Read.s_axilite.i32(i32 %frame_buffer1)
+
+ST_2: frame_buffer0_read (33)  [1/1] 1.00ns
+_ifconv:18  %frame_buffer0_read = call i32 @_ssdm_op_Read.s_axilite.i32(i32 %frame_buffer0)
+
+ST_2: p_s (45)  [1/1] 0.00ns  loc: DMA_Read_addr.cpp:40 (grouped into LUT with out node storemerge)
+_ifconv:30  %p_s = select i1 %tmp_1, i32 0, i32 %tmp
+
+ST_2: active_frame_V_read (46)  [1/2] 0.00ns  loc: DMA_Read_addr.cpp:37
+_ifconv:31  %active_frame_V_read = call i2 @_ssdm_op_Read.ap_none.i2P(i2* %active_frame_V)
+
+ST_2: tmp_2 (47)  [1/1] 0.00ns  loc: DMA_Read_addr.cpp:37 (grouped into LUT with out node storemerge)
+_ifconv:32  %tmp_2 = zext i2 %active_frame_V_read to i32
+
+ST_2: storemerge (48)  [1/1] 1.37ns  loc: DMA_Read_addr.cpp:40 (out node of the LUT)
+_ifconv:33  %storemerge = select i1 %mode_V_read, i32 %p_s, i32 %tmp_2
+
+ST_2: StgValue_26 (49)  [1/1] 0.00ns  loc: DMA_Read_addr.cpp:37
+_ifconv:34  store i32 %storemerge, i32* @n, align 4
+
+ST_2: tmp_4 (50)  [1/1] 2.52ns  loc: DMA_Read_addr.cpp:40
+_ifconv:35  %tmp_4 = icmp eq i32 %storemerge, 0
+
+ST_2: tmp_9 (51)  [1/1] 2.52ns  loc: DMA_Read_addr.cpp:40
+_ifconv:36  %tmp_9 = icmp eq i32 %storemerge, 1
+
+ST_2: tmp_s (52)  [1/1] 2.52ns  loc: DMA_Read_addr.cpp:40
+_ifconv:37  %tmp_s = icmp eq i32 %storemerge, 2
+
+ST_2: or_cond (53)  [1/1] 0.00ns  loc: DMA_Read_addr.cpp:40 (grouped into LUT with out node p_v)
+_ifconv:38  %or_cond = or i1 %tmp_s, %tmp_9
+
+ST_2: tmp_3 (54)  [1/1] 0.00ns  loc: DMA_Read_addr.cpp:55 (grouped into LUT with out node p_v)
+_ifconv:39  %tmp_3 = call i30 @_ssdm_op_PartSelect.i30.i32.i32.i32(i32 %frame_buffer1_read, i32 2, i32 31)
+
+ST_2: tmp_5 (55)  [1/1] 0.00ns  loc: DMA_Read_addr.cpp:55
+_ifconv:40  %tmp_5 = call i30 @_ssdm_op_PartSelect.i30.i32.i32.i32(i32 %frame_buffer0_read, i32 2, i32 31)
+
+ST_2: tmp_6 (56)  [1/1] 0.00ns  loc: DMA_Read_addr.cpp:40 (grouped into LUT with out node p_v)
+_ifconv:41  %tmp_6 = select i1 %tmp_s, i30 %tmp_3, i30 %tmp_5
+
+ST_2: tmp_8 (57)  [1/1] 0.00ns  loc: DMA_Read_addr.cpp:55 (grouped into LUT with out node tmp_12)
+_ifconv:42  %tmp_8 = call i30 @_ssdm_op_PartSelect.i30.i32.i32.i32(i32 %frame_buffer2_read, i32 2, i32 31)
+
+ST_2: tmp_12 (58)  [1/1] 1.37ns  loc: DMA_Read_addr.cpp:40 (out node of the LUT)
+_ifconv:43  %tmp_12 = select i1 %tmp_4, i30 %tmp_8, i30 %tmp_5
+
+ST_2: p_v (59)  [1/1] 1.37ns  loc: DMA_Read_addr.cpp:40 (out node of the LUT)
+_ifconv:44  %p_v = select i1 %or_cond, i30 %tmp_6, i30 %tmp_12
+
+
+ <State 3>: 8.75ns
+ST_3: tmp_10 (60)  [1/1] 0.00ns  loc: DMA_Read_addr.cpp:62
+_ifconv:45  %tmp_10 = zext i30 %p_v to i32
+
+ST_3: in_addr (61)  [1/1] 0.00ns  loc: DMA_Read_addr.cpp:62
+_ifconv:46  %in_addr = getelementptr inbounds i32* %in_r, i32 %tmp_10
+
+ST_3: in_addr_1_rd_req (62)  [7/7] 8.75ns  loc: DMA_Read_addr.cpp:62
+_ifconv:47  %in_addr_1_rd_req = call i1 @_ssdm_op_ReadReq.m_axi.i32P(i32* %in_addr, i32 480000)
+
+
+ <State 4>: 8.75ns
+ST_4: in_addr_1_rd_req (62)  [6/7] 8.75ns  loc: DMA_Read_addr.cpp:62
+_ifconv:47  %in_addr_1_rd_req = call i1 @_ssdm_op_ReadReq.m_axi.i32P(i32* %in_addr, i32 480000)
+
+
+ <State 5>: 8.75ns
+ST_5: in_addr_1_rd_req (62)  [5/7] 8.75ns  loc: DMA_Read_addr.cpp:62
+_ifconv:47  %in_addr_1_rd_req = call i1 @_ssdm_op_ReadReq.m_axi.i32P(i32* %in_addr, i32 480000)
+
+
+ <State 6>: 8.75ns
+ST_6: in_addr_1_rd_req (62)  [4/7] 8.75ns  loc: DMA_Read_addr.cpp:62
+_ifconv:47  %in_addr_1_rd_req = call i1 @_ssdm_op_ReadReq.m_axi.i32P(i32* %in_addr, i32 480000)
+
+
+ <State 7>: 8.75ns
+ST_7: in_addr_1_rd_req (62)  [3/7] 8.75ns  loc: DMA_Read_addr.cpp:62
+_ifconv:47  %in_addr_1_rd_req = call i1 @_ssdm_op_ReadReq.m_axi.i32P(i32* %in_addr, i32 480000)
+
+
+ <State 8>: 8.75ns
+ST_8: in_addr_1_rd_req (62)  [2/7] 8.75ns  loc: DMA_Read_addr.cpp:62
+_ifconv:47  %in_addr_1_rd_req = call i1 @_ssdm_op_ReadReq.m_axi.i32P(i32* %in_addr, i32 480000)
+
+
+ <State 9>: 8.75ns
+ST_9: StgValue_45 (15)  [1/1] 0.00ns
+_ifconv:0  call void (...)* @_ssdm_op_SpecBitsMap(i32* %in_r), !map !46
+
+ST_9: StgValue_46 (16)  [1/1] 0.00ns
+_ifconv:1  call void (...)* @_ssdm_op_SpecBitsMap(i32* %outs_V_data_V), !map !52
+
+ST_9: StgValue_47 (17)  [1/1] 0.00ns
+_ifconv:2  call void (...)* @_ssdm_op_SpecBitsMap(i4* %outs_V_keep_V), !map !56
+
+ST_9: StgValue_48 (18)  [1/1] 0.00ns
+_ifconv:3  call void (...)* @_ssdm_op_SpecBitsMap(i4* %outs_V_strb_V), !map !60
+
+ST_9: StgValue_49 (19)  [1/1] 0.00ns
+_ifconv:4  call void (...)* @_ssdm_op_SpecBitsMap(i1* %outs_V_user_V), !map !64
+
+ST_9: StgValue_50 (20)  [1/1] 0.00ns
+_ifconv:5  call void (...)* @_ssdm_op_SpecBitsMap(i1* %outs_V_last_V), !map !68
+
+ST_9: StgValue_51 (21)  [1/1] 0.00ns
+_ifconv:6  call void (...)* @_ssdm_op_SpecBitsMap(i1* %outs_V_id_V), !map !72
+
+ST_9: StgValue_52 (22)  [1/1] 0.00ns
+_ifconv:7  call void (...)* @_ssdm_op_SpecBitsMap(i1* %outs_V_dest_V), !map !76
+
+ST_9: StgValue_53 (23)  [1/1] 0.00ns
+_ifconv:8  call void (...)* @_ssdm_op_SpecBitsMap(i32 %frame_buffer0), !map !80
+
+ST_9: StgValue_54 (24)  [1/1] 0.00ns
+_ifconv:9  call void (...)* @_ssdm_op_SpecBitsMap(i32 %frame_buffer1), !map !86
+
+ST_9: StgValue_55 (25)  [1/1] 0.00ns
+_ifconv:10  call void (...)* @_ssdm_op_SpecBitsMap(i32 %frame_buffer2), !map !90
+
+ST_9: StgValue_56 (26)  [1/1] 0.00ns
+_ifconv:11  call void (...)* @_ssdm_op_SpecBitsMap(i2* %active_frame_V), !map !94
+
+ST_9: StgValue_57 (27)  [1/1] 0.00ns
+_ifconv:12  call void (...)* @_ssdm_op_SpecBitsMap(i1 %mode_V), !map !98
+
+ST_9: StgValue_58 (28)  [1/1] 0.00ns
+_ifconv:13  call void (...)* @_ssdm_op_SpecBitsMap(i32 0) nounwind, !map !102
+
+ST_9: StgValue_59 (29)  [1/1] 0.00ns
+_ifconv:14  call void (...)* @_ssdm_op_SpecTopModule([14 x i8]* @DMA_Read_addr_str) nounwind
+
+ST_9: StgValue_60 (34)  [1/1] 0.00ns  loc: DMA_Read_addr.cpp:23
+_ifconv:19  call void (...)* @_ssdm_op_SpecInterface(i1 %mode_V, [10 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str1, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
+
+ST_9: StgValue_61 (35)  [1/1] 0.00ns  loc: DMA_Read_addr.cpp:24
+_ifconv:20  call void (...)* @_ssdm_op_SpecInterface(i2* %active_frame_V, [8 x i8]* @p_str2, i32 1, i32 1, [1 x i8]* @p_str1, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
+
+ST_9: StgValue_62 (36)  [1/1] 0.00ns  loc: DMA_Read_addr.cpp:25
+_ifconv:21  call void (...)* @_ssdm_op_SpecInterface(i32 %frame_buffer0, [10 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str1, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
+
+ST_9: StgValue_63 (37)  [1/1] 0.00ns  loc: DMA_Read_addr.cpp:26
+_ifconv:22  call void (...)* @_ssdm_op_SpecInterface(i32 %frame_buffer1, [10 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str1, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
+
+ST_9: StgValue_64 (38)  [1/1] 0.00ns  loc: DMA_Read_addr.cpp:27
+_ifconv:23  call void (...)* @_ssdm_op_SpecInterface(i32 %frame_buffer2, [10 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str1, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
+
+ST_9: StgValue_65 (39)  [1/1] 0.00ns  loc: DMA_Read_addr.cpp:28
+_ifconv:24  call void (...)* @_ssdm_op_SpecInterface(i32* %in_r, [6 x i8]* @p_str3, i32 0, i32 0, [1 x i8]* @p_str1, i32 0, i32 3072, [1 x i8]* @p_str1, [4 x i8]* @p_str4, [1 x i8]* @p_str1, i32 16, i32 16, i32 16, i32 16, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
+
+ST_9: StgValue_66 (40)  [1/1] 0.00ns  loc: DMA_Read_addr.cpp:29
+_ifconv:25  call void (...)* @_ssdm_op_SpecInterface(i32* %outs_V_data_V, i4* %outs_V_keep_V, i4* %outs_V_strb_V, i1* %outs_V_user_V, i1* %outs_V_last_V, i1* %outs_V_id_V, i1* %outs_V_dest_V, [5 x i8]* @p_str5, i32 1, i32 1, [5 x i8]* @p_str6, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
+
+ST_9: StgValue_67 (41)  [1/1] 0.00ns  loc: DMA_Read_addr.cpp:30
+_ifconv:26  call void (...)* @_ssdm_op_SpecInterface(i32 0, [10 x i8]* @p_str, i32 0, i32 0, [1 x i8]* @p_str1, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
+
+ST_9: in_addr_1_rd_req (62)  [1/7] 8.75ns  loc: DMA_Read_addr.cpp:62
+_ifconv:47  %in_addr_1_rd_req = call i1 @_ssdm_op_ReadReq.m_axi.i32P(i32* %in_addr, i32 480000)
+
+ST_9: StgValue_69 (63)  [1/1] 1.57ns  loc: DMA_Read_addr.cpp:59
+_ifconv:48  br label %.preheader
+
+
+ <State 10>: 5.51ns
+ST_10: indvar_flatten (65)  [1/1] 0.00ns
+.preheader:0  %indvar_flatten = phi i19 [ 0, %_ifconv ], [ %indvar_flatten_next, %.preheader.preheader ]
+
+ST_10: y (66)  [1/1] 0.00ns  loc: DMA_Read_addr.cpp:62
+.preheader:1  %y = phi i10 [ 0, %_ifconv ], [ %tmp_3_cast8_mid2_v_v_1, %.preheader.preheader ]
+
+ST_10: x (67)  [1/1] 0.00ns
+.preheader:2  %x = phi i10 [ 0, %_ifconv ], [ %x_1, %.preheader.preheader ]
+
+ST_10: exitcond_flatten (68)  [1/1] 2.33ns
+.preheader:3  %exitcond_flatten = icmp eq i19 %indvar_flatten, -44288
+
+ST_10: indvar_flatten_next (69)  [1/1] 2.08ns
+.preheader:4  %indvar_flatten_next = add i19 %indvar_flatten, 1
+
+ST_10: StgValue_75 (70)  [1/1] 0.00ns
+.preheader:5  br i1 %exitcond_flatten, label %0, label %.preheader.preheader
+
+ST_10: exitcond4 (73)  [1/1] 2.07ns  loc: DMA_Read_addr.cpp:60
+.preheader.preheader:1  %exitcond4 = icmp eq i10 %x, -224
+
+ST_10: x_mid2 (74)  [1/1] 1.37ns  loc: DMA_Read_addr.cpp:60
+.preheader.preheader:2  %x_mid2 = select i1 %exitcond4, i10 0, i10 %x
+
+ST_10: y_s (75)  [1/1] 1.84ns  loc: DMA_Read_addr.cpp:59
+.preheader.preheader:3  %y_s = add i10 %y, 1
+
+ST_10: tmp_3_cast8_mid2_v_v_1 (76)  [1/1] 1.37ns  loc: DMA_Read_addr.cpp:62
+.preheader.preheader:4  %tmp_3_cast8_mid2_v_v_1 = select i1 %exitcond4, i10 %y_s, i10 %y
+
+ST_10: tmp_7 (80)  [1/1] 0.00ns  loc: DMA_Read_addr.cpp:64 (grouped into LUT with out node pix_user_V)
+.preheader.preheader:8  %tmp_7 = or i10 %x_mid2, %tmp_3_cast8_mid2_v_v_1
+
+ST_10: pix_user_V (81)  [1/1] 2.07ns  loc: DMA_Read_addr.cpp:64 (out node of the LUT)
+.preheader.preheader:9  %pix_user_V = icmp eq i10 %tmp_7, 0
+
+ST_10: pix_last_V (82)  [1/1] 2.07ns  loc: DMA_Read_addr.cpp:69
+.preheader.preheader:10  %pix_last_V = icmp eq i10 %x_mid2, -225
+
+ST_10: x_1 (85)  [1/1] 1.84ns  loc: DMA_Read_addr.cpp:60
+.preheader.preheader:13  %x_1 = add i10 %x_mid2, 1
+
+
+ <State 11>: 8.75ns
+ST_11: tmp_data_V (79)  [1/1] 8.75ns  loc: DMA_Read_addr.cpp:62
+.preheader.preheader:7  %tmp_data_V = call i32 @_ssdm_op_Read.m_axi.i32P(i32* %in_addr)
+
+ST_11: StgValue_85 (83)  [2/2] 0.00ns  loc: DMA_Read_addr.cpp:74
+.preheader.preheader:11  call void @_ssdm_op_Write.axis.volatile.i32P.i4P.i4P.i1P.i1P.i1P.i1P(i32* %outs_V_data_V, i4* %outs_V_keep_V, i4* %outs_V_strb_V, i1* %outs_V_user_V, i1* %outs_V_last_V, i1* %outs_V_id_V, i1* %outs_V_dest_V, i32 %tmp_data_V, i4 undef, i4 undef, i1 %pix_user_V, i1 %pix_last_V, i1 undef, i1 undef)
+
+
+ <State 12>: 0.00ns
+ST_12: empty (72)  [1/1] 0.00ns
+.preheader.preheader:0  %empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 480000, i64 480000, i64 480000)
+
+ST_12: tmp_11 (77)  [1/1] 0.00ns  loc: DMA_Read_addr.cpp:60
+.preheader.preheader:5  %tmp_11 = call i32 (...)* @_ssdm_op_SpecRegionBegin([12 x i8]* @p_str7)
+
+ST_12: StgValue_88 (78)  [1/1] 0.00ns  loc: DMA_Read_addr.cpp:61
+.preheader.preheader:6  call void (...)* @_ssdm_op_SpecPipeline(i32 1, i32 1, i32 1, i32 0, [1 x i8]* @p_str1) nounwind
+
+ST_12: StgValue_89 (83)  [1/2] 0.00ns  loc: DMA_Read_addr.cpp:74
+.preheader.preheader:11  call void @_ssdm_op_Write.axis.volatile.i32P.i4P.i4P.i1P.i1P.i1P.i1P(i32* %outs_V_data_V, i4* %outs_V_keep_V, i4* %outs_V_strb_V, i1* %outs_V_user_V, i1* %outs_V_last_V, i1* %outs_V_id_V, i1* %outs_V_dest_V, i32 %tmp_data_V, i4 undef, i4 undef, i1 %pix_user_V, i1 %pix_last_V, i1 undef, i1 undef)
+
+ST_12: empty_5 (84)  [1/1] 0.00ns  loc: DMA_Read_addr.cpp:75
+.preheader.preheader:12  %empty_5 = call i32 (...)* @_ssdm_op_SpecRegionEnd([12 x i8]* @p_str7, i32 %tmp_11)
+
+ST_12: StgValue_91 (86)  [1/1] 0.00ns  loc: DMA_Read_addr.cpp:60
+.preheader.preheader:14  br label %.preheader
+
+
+ <State 13>: 0.00ns
+ST_13: StgValue_92 (88)  [1/1] 0.00ns  loc: DMA_Read_addr.cpp:78
+:0  ret i32 0
+
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 4.96ns
+The critical path consists of the following:
+	'load' operation ('n_load', DMA_Read_addr.cpp:39) on static variable 'n' [42]  (0 ns)
+	'add' operation ('tmp', DMA_Read_addr.cpp:39) [43]  (2.44 ns)
+	'icmp' operation ('tmp_1', DMA_Read_addr.cpp:40) [44]  (2.52 ns)
+
+ <State 2>: 7.63ns
+The critical path consists of the following:
+	s_axi read on port 'mode_V' [30]  (1 ns)
+	'select' operation ('storemerge', DMA_Read_addr.cpp:40) [48]  (1.37 ns)
+	'icmp' operation ('tmp_4', DMA_Read_addr.cpp:40) [50]  (2.52 ns)
+	'select' operation ('tmp_12', DMA_Read_addr.cpp:40) [58]  (1.37 ns)
+	'select' operation ('p_v', DMA_Read_addr.cpp:40) [59]  (1.37 ns)
+
+ <State 3>: 8.75ns
+The critical path consists of the following:
+	'getelementptr' operation ('in_addr', DMA_Read_addr.cpp:62) [61]  (0 ns)
+	bus request on port 'in_r' (DMA_Read_addr.cpp:62) [62]  (8.75 ns)
+
+ <State 4>: 8.75ns
+The critical path consists of the following:
+	bus request on port 'in_r' (DMA_Read_addr.cpp:62) [62]  (8.75 ns)
+
+ <State 5>: 8.75ns
+The critical path consists of the following:
+	bus request on port 'in_r' (DMA_Read_addr.cpp:62) [62]  (8.75 ns)
+
+ <State 6>: 8.75ns
+The critical path consists of the following:
+	bus request on port 'in_r' (DMA_Read_addr.cpp:62) [62]  (8.75 ns)
+
+ <State 7>: 8.75ns
+The critical path consists of the following:
+	bus request on port 'in_r' (DMA_Read_addr.cpp:62) [62]  (8.75 ns)
+
+ <State 8>: 8.75ns
+The critical path consists of the following:
+	bus request on port 'in_r' (DMA_Read_addr.cpp:62) [62]  (8.75 ns)
+
+ <State 9>: 8.75ns
+The critical path consists of the following:
+	bus request on port 'in_r' (DMA_Read_addr.cpp:62) [62]  (8.75 ns)
+
+ <State 10>: 5.51ns
+The critical path consists of the following:
+	'phi' operation ('x') with incoming values : ('x', DMA_Read_addr.cpp:60) [67]  (0 ns)
+	'icmp' operation ('exitcond4', DMA_Read_addr.cpp:60) [73]  (2.07 ns)
+	'select' operation ('x_mid2', DMA_Read_addr.cpp:60) [74]  (1.37 ns)
+	'or' operation ('tmp_7', DMA_Read_addr.cpp:64) [80]  (0 ns)
+	'icmp' operation ('pix.user.V', DMA_Read_addr.cpp:64) [81]  (2.07 ns)
+
+ <State 11>: 8.75ns
+The critical path consists of the following:
+	bus read on port 'in_r' (DMA_Read_addr.cpp:62) [79]  (8.75 ns)
+
+ <State 12>: 0ns
+The critical path consists of the following:
+
+ <State 13>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

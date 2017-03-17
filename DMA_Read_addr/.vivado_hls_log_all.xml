@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog">
+  <errorLogs>
+    <logs>
+      <synLog/>
+      <simLog>
+        <logs message="ERROR: [COSIM 212-4] *** C/RTL co-simulation finished: FAIL ***&#xD;&#xA;24&#xD;&#xA;    while executing&#xD;&#xA;&quot;source H:/work/marsee101-axi-dma-read/DMA_Read_addr/solution1/cosim.tcl&quot;&#xD;&#xA;    invoked from within&#xD;&#xA;&quot;hls::main H:/work/marsee101-axi-dma-read/DMA_Read_addr/solution1/cosim.tcl&quot;&#xD;&#xA;    (&quot;uplevel&quot; body line 1)&#xD;&#xA;    invoked from within&#xD;&#xA;&quot;uplevel 1 hls::main {*}$args&quot;&#xD;&#xA;    (procedure &quot;hls_proc&quot; line 5)&#xD;&#xA;    invoked from within&#xD;&#xA;&quot;hls_proc $argv&quot;&#xD;&#xA;" projectName="DMA_Read_addr" solutionName="solution1" date="2017-03-17T13:22:09.424+0900"/>
+        <logs message="ERROR: [HLS 200-70] Cannot find file H:/work/marsee101-axi-dma-read/DMA_Read_addr/solution1/./sim/autowrap/testbench/DMA_Read_addr_tb.cpp_pre.cpp." projectName="DMA_Read_addr" solutionName="solution1" date="2017-03-17T13:22:08.035+0900"/>
+        <logs message="ERROR: [COSIM 212-24] TB preprocess failed : H:/work/marsee101-axi-dma-read/DMA_Read_addr_tb.cpp:16:24: fatal error: bmp_header.h: No such file or directory&#xD;&#xA;compilation terminated." projectName="DMA_Read_addr" solutionName="solution1" date="2017-03-17T13:22:07.999+0900"/>
+      </simLog>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </errorLogs>
+  <warningLogs>
+    <logs>
+      <synLog>
+        <logs message="WARNING: [RTGEN 206-101] Register 'n' is power-on initialization." projectName="DMA_Read_addr" solutionName="solution1" date="2017-03-17T13:19:51.122+0900" type="Warning"/>
+        <logs message="WARNING: [SYN 201-107] Renaming port name 'DMA_Read_addr/in' to 'DMA_Read_addr/in_r' to avoid the conflict with HDL keywords or other object names." projectName="DMA_Read_addr" solutionName="solution1" date="2017-03-17T13:19:49.649+0900" type="Warning"/>
+      </synLog>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </warningLogs>
+</vivadoHLSLog:LogRoot>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="DMA_Read.h" path="H:\work\vivado-hls-axi-dma-read-failure\DMA_Read.h"/>
+    <originFiles name="DMA_Read_addr.cpp" path="H:\work\vivado-hls-axi-dma-read-failure\DMA_Read_addr.cpp"/>
+    <originFiles name="DMA_Read.h" path="H:\work\vivado-hls-axi-dma-read-failure\DMA_Read.h"/>
+    <originFiles name="DMA_Read_addr.cpp" path="H:\work\vivado-hls-axi-dma-read-failure\DMA_Read_addr.cpp"/>
+  </source>
+  <testbench>
+    <originFiles name="DMA_Read_addr_tb.cpp" path="H:\work\vivado-hls-axi-dma-read-failure\DMA_Read_addr_tb.cpp"/>
+    <originFiles name="DMA_Read_addr_tb.cpp" path="H:\work\vivado-hls-axi-dma-read-failure\DMA_Read_addr_tb.cpp"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>

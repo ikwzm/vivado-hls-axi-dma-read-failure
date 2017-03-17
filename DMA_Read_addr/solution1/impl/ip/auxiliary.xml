@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="DMA_Read_addr" xd:componentRef="DMA_Read_addr" xd:initiationInterval="480012" xd:clockPeriod="10.000000" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+  <xd:returnValue xd:interfaceRef="s_axi_AXILiteS" xd:busTypeRef="axilite" xd:dataWidth="32" xd:offset="0x10" xd:statusOffset="0x14"/>
+  <xd:controlReg xd:name="control" xd:interfaceRef="s_axi_AXILiteS" xd:busTypeRef="axilite" xd:type="generic_axi_lite" xd:offset="0x0"/>
+  <xd:arg xd:name="*(in)" xd:originalName="in" xd:direction="inout" xd:interfaceRef="m_axi_in_r" xd:busTypeRef="aximm" xd:arraySize="3072" xd:dataWidth="32" xd:bufferDirection="in"/>
+  <xd:arg xd:name="outs.data" xd:originalName="outs" xd:direction="out" xd:interfaceRef="outs" xd:busTypeRef="axis" xd:dataWidth="32"/>
+  <xd:arg xd:name="outs.keep" xd:originalName="outs" xd:direction="out" xd:interfaceRef="outs" xd:busTypeRef="axis" xd:dataWidth="4"/>
+  <xd:arg xd:name="outs.strb" xd:originalName="outs" xd:direction="out" xd:interfaceRef="outs" xd:busTypeRef="axis" xd:dataWidth="4"/>
+  <xd:arg xd:name="outs.user" xd:originalName="outs" xd:direction="out" xd:interfaceRef="outs" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="outs.last" xd:originalName="outs" xd:direction="out" xd:interfaceRef="outs" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="outs.id" xd:originalName="outs" xd:direction="out" xd:interfaceRef="outs" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="outs.dest" xd:originalName="outs" xd:direction="out" xd:interfaceRef="outs" xd:busTypeRef="axis" xd:dataWidth="1"/>
+  <xd:arg xd:name="frame_buffer0" xd:originalName="frame_buffer0" xd:direction="in" xd:interfaceRef="s_axi_AXILiteS" xd:busTypeRef="axilite" xd:offset="0x18" xd:handshakeRef="ap_none" xd:dataWidth="32"/>
+  <xd:arg xd:name="frame_buffer1" xd:originalName="frame_buffer1" xd:direction="in" xd:interfaceRef="s_axi_AXILiteS" xd:busTypeRef="axilite" xd:offset="0x20" xd:handshakeRef="ap_none" xd:dataWidth="32"/>
+  <xd:arg xd:name="frame_buffer2" xd:originalName="frame_buffer2" xd:direction="in" xd:interfaceRef="s_axi_AXILiteS" xd:busTypeRef="axilite" xd:offset="0x28" xd:handshakeRef="ap_none" xd:dataWidth="32"/>
+  <xd:arg xd:name="active_frame" xd:originalName="active_frame" xd:direction="in" xd:interfaceRef="active_frame_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="2"/>
+  <xd:arg xd:name="mode" xd:originalName="mode" xd:direction="in" xd:interfaceRef="s_axi_AXILiteS" xd:busTypeRef="axilite" xd:dataWidth="1" xd:offset="0x30" xd:handshakeRef="ap_none"/>
+  <xd:latencyEstimates xd:best-case="480011" xd:worst-case="480011" xd:average-case="480011"/>
+  <xd:resourceEstimates xd:LUT="1316" xd:FF="958" xd:BRAM="2" xd:DSP="0"/>
+</xd:acceleratorMap>

@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2016.4 (64-bit)
+# SW Build 1733598 on Wed Dec 14 22:35:39 MST 2016
+# IP Build 1731160 on Wed Dec 14 23:47:21 MST 2016
+# Start of session at: Fri Mar 17 13:26:02 2017
+# Process ID: 6160
+# Current directory: H:/work/marsee101-axi-dma-read/DMA_Read_addr/solution1/impl/ip
+# Command line: vivado.exe -notrace -mode batch -source run_ippack.tcl
+# Log file: H:/work/marsee101-axi-dma-read/DMA_Read_addr/solution1/impl/ip/vivado.log
+# Journal file: H:/work/marsee101-axi-dma-read/DMA_Read_addr/solution1/impl/ip\vivado.jou
+#-----------------------------------------------------------
+source run_ippack.tcl -notrace
